@@ -1,0 +1,6 @@
+# 大きな動画ファイルを除外
+images/**/*.mp4
+images/**/*.MP4
+images/**/*.mov
+images/**/*.MOV
+.DS_Store
