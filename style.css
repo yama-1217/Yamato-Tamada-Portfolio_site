@@ -926,16 +926,81 @@ ul {
     margin: 0 auto;
 }
 
-/* Video Support */
+/* Video Support (YouTube Thumbnail Link) */
+.youtube-thumbnail-container {
+    position: relative;
+    width: 80%;
+    margin: 0 auto 4rem auto;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.youtube-thumbnail-container img {
+    width: 100% !important;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.youtube-thumbnail-container:hover img {
+    transform: scale(1.03);
+}
+
+.play-button-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+.youtube-thumbnail-container:hover .play-button-overlay {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.play-button {
+    width: 68px;
+    height: 48px;
+    background-color: rgba(33, 33, 33, 0.8);
+    border-radius: 12px;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.youtube-thumbnail-container:hover .play-button {
+    background-color: #ff0000;
+}
+
+.play-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-width: 10px 0 10px 18px;
+    border-color: transparent transparent transparent #fff;
+}
+
+/* Fallback for iframe if needed */
 .video-container {
     position: relative;
-    padding-bottom: 56.25%;
-    /* 16:9 Aspect Ratio */
+    width: 80%;
+    padding-bottom: 45%;
+    padding-top: 45%;
     height: 0;
     overflow: hidden;
-    width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 4rem auto;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    background: #000;
 }
 
 .video-container iframe {
@@ -944,6 +1009,8 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
+    border: 0;
+    display: block;
 }
 
 .work-video {
@@ -951,12 +1018,26 @@ ul {
     max-width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: contain;
-    /* Prevent cropping, maintain original aspect ratio */
     display: block;
     margin: 0 auto;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     background: #000;
-    /* Black bars for fit */
+}
+
+.youtube-direct-link {
+    display: block;
+    width: 80%;
+    margin: -3rem auto 4rem auto;
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    text-decoration: underline;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+
+.youtube-direct-link:hover {
+    color: var(--accent-color);
 }
 
 .project-statement-section {
@@ -1160,4 +1241,27 @@ ul {
     #contact-form button {
         width: 100%;
     }
+}
+
+/* YouTube Video Container */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    /* Ensure it matches image width */
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio */
+    margin: 2rem 0;
+    background: #000;
+    /* Loader background */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
 }

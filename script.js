@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const img = document.createElement('img');
                     const num = i < 10 ? `0${i}` : i;
                     img.src = `images/projects/${projectFolder}/${num}.jpg`;
-                    img.alt = `${projectTitle} - ${num}`;
+                    img.alt = `${projectTitleJa || projectTitleEn} - ${num}`;
                     // Handle missing images
                     img.onerror = function () {
                         this.remove(); // Remove the element if image doesn't exist
@@ -177,26 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     gallery.appendChild(img);
                 }
 
-                // 2. Check for YouTube videos (v parameter, can be multiple comma-separated IDs)
-                const youtubeIdsRaw = urlParams.get('v');
-                if (youtubeIdsRaw) {
-                    youtubeIdsRaw.split(',').forEach(id => {
-                        const trimmedId = id.trim();
-                        if (trimmedId) {
-                            const videoContainer = document.createElement('div');
-                            videoContainer.className = 'video-container';
-                            videoContainer.innerHTML = `
-                                <iframe src="https://www.youtube.com/embed/${trimmedId}" 
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen></iframe>
-                            `;
-                            gallery.appendChild(videoContainer);
-                        }
-                    });
-                }
-
-                // 3. Check for local videos (video.mp4/mov, video01.mp4/mov to video05.mp4/mov)
+                // 2. Local videos (Check first to keep them near images if needed, or move to end)
                 const videoFiles = [
                     'video.mp4', 'video.mov',
                     'video01.mp4', 'video01.mov',
@@ -210,20 +191,48 @@ document.addEventListener('DOMContentLoaded', () => {
                     videoElement.className = 'work-video';
                     videoElement.controls = true;
                     videoElement.src = `images/projects/${projectFolder}/${fileName}`;
-
-                    // Handle orientation detection for video
                     videoElement.onloadedmetadata = function () {
                         if (this.videoHeight > this.videoWidth) {
                             this.classList.add('is-portrait');
                         }
                     };
-
-                    // Handle missing videos
                     videoElement.onerror = function () {
                         this.remove();
                     };
                     gallery.appendChild(videoElement);
                 });
+
+                // 3. YouTube videos (Always at the end)
+                const youtubeIdsRaw = urlParams.get('v');
+                if (youtubeIdsRaw) {
+                    youtubeIdsRaw.split(',').forEach(id => {
+                        const trimmedId = id.trim();
+                        if (trimmedId) {
+                            const videoContainer = document.createElement('div');
+                            videoContainer.className = 'video-container';
+                            videoContainer.innerHTML = `
+                                <iframe src="https://www.youtube.com/embed/${trimmedId}?rel=0&origin=${window.location.origin}" 
+                                        title="YouTube video player"
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen></iframe>
+                            `;
+                            gallery.appendChild(videoContainer);
+
+                            // Add direct link below the video as a fallback
+                            const directLink = document.createElement('a');
+                            directLink.href = `https://www.youtube.com/watch?v=${trimmedId}`;
+                            directLink.target = '_blank';
+                            directLink.className = 'youtube-direct-link';
+                            directLink.innerHTML = `
+                                <span class="lang-ja">YouTubeで見る</span>
+                                <span class="lang-en">Watch on YouTube</span>
+                            `;
+                            gallery.appendChild(directLink);
+                        }
+                    });
+                }
             }
         }
     }
@@ -257,6 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize language
     const savedLang = localStorage.getItem(LANG_KEY) || 'ja';
+
+    // Ensure initial class is set correctly
     setLanguage(savedLang);
 
     // Add click listeners to switcher buttons
