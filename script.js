@@ -219,17 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                         allowfullscreen></iframe>
                             `;
                             gallery.appendChild(videoContainer);
-
-                            // Add direct link below the video as a fallback
-                            const directLink = document.createElement('a');
-                            directLink.href = `https://www.youtube.com/watch?v=${trimmedId}`;
-                            directLink.target = '_blank';
-                            directLink.className = 'youtube-direct-link';
-                            directLink.innerHTML = `
-                                <span class="lang-ja">YouTubeで見る</span>
-                                <span class="lang-en">Watch on YouTube</span>
-                            `;
-                            gallery.appendChild(directLink);
                         }
                     });
                 }
