@@ -990,12 +990,11 @@ ul {
     border-color: transparent transparent transparent #fff;
 }
 
-/* Fallback for iframe if needed */
+/* YouTube Video Container */
 .video-container {
     position: relative;
     width: 80%;
-    padding-bottom: 45%;
-    padding-top: 45%;
+    padding-bottom: 45%; /* 16:9 Aspect Ratio (56.25% of 80%) */
     height: 0;
     overflow: hidden;
     margin: 0 auto 4rem auto;
@@ -1241,27 +1240,4 @@ ul {
     #contact-form button {
         width: 100%;
     }
-}
-
-/* YouTube Video Container */
-.video-container {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    /* Ensure it matches image width */
-    padding-top: 56.25%;
-    /* 16:9 Aspect Ratio */
-    margin: 2rem 0;
-    background: #000;
-    /* Loader background */
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
 }
