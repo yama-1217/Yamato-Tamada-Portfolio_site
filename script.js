@@ -77,16 +77,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
-    const navList = document.querySelector('.nav-list');
+    const nav = document.querySelector('.nav');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    if (menuToggle && navList) {
+    if (menuToggle && nav) {
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
-            navList.classList.toggle('active');
+            nav.classList.toggle('active');
 
             // Prevent scrolling when menu is open
-            if (navList.classList.contains('active')) {
+            if (nav.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
             } else {
                 document.body.style.overflow = '';
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
-                navList.classList.remove('active');
+                nav.classList.remove('active');
                 document.body.style.overflow = '';
             });
         });
