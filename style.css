@@ -127,11 +127,13 @@ ul {
 }
 
 .nav {
-    display: none;
+    display: flex;
     position: fixed;
     top: 0;
-    left: 0;
+    right: -100%;
+    /* Start hidden off-screen */
     width: 100%;
+    /* Full width */
     height: 100vh;
     background: rgba(248, 248, 248, 0.98);
     backdrop-filter: blur(10px);
@@ -140,15 +142,11 @@ ul {
     align-items: center;
     justify-content: center;
     z-index: 105;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .nav.active {
-    display: flex;
-    opacity: 1;
-    visibility: visible;
+    right: 0;
 }
 
 .logo {
@@ -167,7 +165,10 @@ ul {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 2.5rem;
+    padding: 0;
+    margin: 0;
+    width: 100%;
 }
 
 .nav-list li {
@@ -1180,7 +1181,7 @@ ul {
 /* Success Message Styles */
 .contact-success {
     text-align: center;
-    padding: 6rem 2rem;
+
     background: var(--bg-color);
     border: 1px solid #f2f4f5;
     border-radius: 8px;
@@ -1244,5 +1245,11 @@ ul {
 
     #contact-form button {
         width: 100%;
+    }
+
+    .nav {
+        width: 100%;
+        /* Full width on mobile */
+        padding: 6rem 2rem;
     }
 }
