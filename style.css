@@ -533,7 +533,7 @@ ul {
 }
 
 .exhibition-type-title {
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -559,10 +559,10 @@ ul {
 }
 
 .exhibition-year {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-color);
-    min-width: 60px;
+    min-width: 65px;
     flex-shrink: 0;
 }
 
@@ -579,10 +579,10 @@ ul {
 }
 
 .exhibition-title {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-family: var(--font-jp);
-    color: var(--secondary-color);
-    line-height: 1.4;
+    color: var(--text-color);
+    line-height: 1.5;
 }
 
 .statement-text {
