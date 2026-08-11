@@ -336,7 +336,7 @@ ul {
 }
 
 .works-year-group {
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
 }
 
 .works-year-group:last-child {
@@ -344,9 +344,9 @@ ul {
 }
 
 .works-year-title {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 300;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     letter-spacing: 0.1em;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     padding-bottom: 0.5rem;
@@ -355,16 +355,15 @@ ul {
 
 .works-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    column-gap: 2rem;
+    row-gap: 2.8rem;
 }
 
 .work-item {
     position: relative;
-    overflow: hidden;
-    aspect-ratio: 3/2;
-    justify-self: center;
-    /* Center if width is less than 100% */
+    overflow: visible;
+    width: 100%;
 }
 
 /* Portrait orientation adjustment: 
@@ -378,42 +377,40 @@ ul {
    So width should be 2/3 (66.66%) of the column width.
 */
 .work-item.is-portrait {
-    aspect-ratio: 2/3;
-    width: 66.66%;
+    width: 100%;
 }
 
 .work-link {
     display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 .work-image-wrapper {
     width: 100%;
-    height: 100%;
+    height: auto;
     position: relative;
 }
 
 .work-image {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 4 / 3;
+    height: auto;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    display: block;
+    transition: opacity 0.3s ease;
 }
 
 .work-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: static;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    height: auto;
+    background: transparent;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    justify-content: flex-start;
+    align-items: flex-start;
+    opacity: 1;
+    padding-top: 0.55rem;
 }
 
 .work-item:hover .work-overlay {
@@ -421,17 +418,18 @@ ul {
 }
 
 .work-item:hover .work-image {
-    transform: scale(1.05);
+    opacity: 0.72;
 }
 
 .work-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #fff;
-    /* Ensure text visible on overlay */
-    transform: translateY(20px);
-    transition: transform 0.4s ease;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: var(--text-color);
+    transform: none;
+    transition: opacity 0.3s ease;
+    line-height: 1.5;
+    font-family: var(--font-jp);
 }
 
 .work-category {
@@ -511,37 +509,39 @@ ul {
 .about-page {
     padding-top: calc(var(--header-height) + 50px);
     min-height: 100vh;
+    font-family: var(--font-jp);
+}
+
+.about-page .page-title {
+    font-size: 1.7rem;
+    margin-bottom: 3rem;
 }
 
 .about-section {
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
 }
 
 .about-heading {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 400;
     margin-bottom: 1.5rem;
     letter-spacing: 0.05em;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding-bottom: 0.5rem;
 }
 
 .about-subtitle {
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     color: var(--secondary-color);
     font-family: var(--font-jp);
     margin-top: 0.5rem;
 }
 
 .exhibition-type-title {
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--text-color);
     margin: 2.5rem 0 1rem 0;
-    border-left: 2px solid var(--text-color);
-    padding-left: 10px;
 }
 
 .exhibition-type-title:first-of-type {
@@ -560,8 +560,8 @@ ul {
 }
 
 .exhibition-year {
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-size: 0.78rem;
+    font-weight: 400;
     color: var(--text-color);
     min-width: 65px;
     flex-shrink: 0;
@@ -580,7 +580,7 @@ ul {
 }
 
 .exhibition-title {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     font-family: var(--font-jp);
     color: var(--text-color);
     line-height: 1.5;
@@ -591,8 +591,8 @@ ul {
 }
 
 .statement-text p {
-    font-size: 0.85rem;
-    line-height: 1.8;
+    font-size: 0.78rem;
+    line-height: 1.9;
     margin-bottom: 1.5rem;
     font-family: var(--font-jp);
     color: var(--text-color);
